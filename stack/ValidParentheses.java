@@ -22,8 +22,6 @@ Example 4:
 Input: s = "([)]"
 Output: false
 */
-package stack;
-
 // Basic idea: create a stack that store the closing type of brackets.
 // Every time we encounter an opening brackets `(, {. [` push the corresponding closing bracket into the stack
 // When we encounter a closing bracket, stack.pop() would be equal to the closing bracket for it to be valid.
