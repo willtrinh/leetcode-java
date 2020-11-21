@@ -27,4 +27,21 @@ class MoveZeroes {
             nums[index++] = 0;
         }
     }
+
+    // Alternate Solution with less operations & 1 loop
+    public void moveZeroes2(int[] nums) {
+        // If empty array then return
+        if (nums == null || nums.length == 0)
+            return;
+        int j = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                int temp = nums[j];
+                nums[j] = nums[i];
+                nums[i] = temp;
+                j++;
+            }
+        }
+    }
 }
