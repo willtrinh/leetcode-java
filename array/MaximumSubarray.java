@@ -23,8 +23,6 @@ Example 4:
 Input: nums = [-1]
 Output: -1
 */
-package array;
-
 public class MaximumSubarray {
     public int maxSubArray(int[] nums) {
         if (nums.length < 2)

@@ -21,10 +21,6 @@ Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
 */
-package array;
-
-import java.util.Map;
-
 public class TwoSum {
     // Time: O(n), Space: O(n)
     public int[] twoSum(int[] nums, int target) {
