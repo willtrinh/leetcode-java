@@ -28,7 +28,7 @@ class MoveZeroes {
         }
     }
 
-    // Alternate Solution with less operations & 1 loop
+    // Alternative Solution with less operations & 1 loop
     public void moveZeroes2(int[] nums) {
         // If empty array then return
         if (nums == null || nums.length == 0)
