@@ -28,8 +28,11 @@ public class LinkedListCycle2 {
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+            // slow and fast meet at a point in the cycle
             if (slow == fast) {
+                // start another node at head
                 ListNode slow2 = head;
+                // advance slow and slow2 by 1. The meeting point is the start of the cycle.
                 while (slow != slow2) {
                     slow = slow.next;
                     slow2 = slow2.next;
