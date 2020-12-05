@@ -25,16 +25,20 @@ public class TwoSum {
     // Time: O(n), Space: O(n)
     public int[] twoSum(int[] nums, int target) {
         // create a map of complements
-        Map<Integer, Integer> map = new HashMap<>();
-
+        HashMap<Integer, Integer> map = new HashMap<>();
+        // indices array to store indexes of 2 numbers that add up to target
+        int[] arr = new int[2];
         for (int i = 0; i < nums.length; i++) {
             int complement = target - nums[i];
             // check if current element's complement is in the table
             if (map.containsKey(complement)) {
-                return new int[] { map.get(complement), i };
+                arr[0] = map.get(complement);
+                arr[1] = i;
+                return arr;
+            } else {
+                map.put(nums[i], i);
             }
-            map.put(nums[i], i);
         }
-        throw new IllegalArgumentException("No two sum solution");
+        return arr;
     }
 }

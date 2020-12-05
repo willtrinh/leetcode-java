@@ -36,9 +36,12 @@ public class ValidParentheses {
                 stack.push('}');
             else if (c == '[')
                 stack.push(']');
+            // if stack is empty while c is not
+            // or when stack.pop() is not equal closing parenthesis.
             else if (stack.isEmpty() || stack.pop() != c)
                 return false;
         }
+        // if stack still contains elements, then it is invalid
         return stack.isEmpty();
     }
 }
