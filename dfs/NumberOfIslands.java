@@ -31,7 +31,31 @@ n == grid[i].length
 grid[i][j] is '0' or '1'.
 */
 public class NumberOfIslands {
-    public int numIslands(char[][] grid) {
+  public int numIslands(char[][] grid) {
+    int count = 0;
+    // traverse 2d array
+    for (int row = 0; row < grid.length; row++) {
+      for (int col = 0; col < grid[row].length; col++) {
+        //
+        if (grid[row][col] == '1') {
+          count += 1;
+          dfs(grid, row, col);
 
+        }
+      }
     }
+    return count;
+  }
+
+  public void dfs(char[][] grid, int row, int col) {
+    // boundary check
+    if (row < 0 || row >= grid.length || col < 0 || col >= grid[row].length || grid[row][col] == '0')
+      return;
+
+    grid[row][col] = '0'; // '1' seen, set it to '0'
+    dfs(grid, row - 1, col); // check up
+    dfs(grid, row + 1, col); // check down
+    dfs(grid, row, col - 1); // check left
+    dfs(grid, row, col + 1); // check right
+  }
 }
