@@ -21,6 +21,7 @@ public class FirstUniqueCharacterInAString {
                 map.put(c, count + 1);
             }
         }
+        // find the index
         for (int i = 0; i < s.length(); i++) {
             if (map.get(s.charAt(i)) == 1)
                 return i;
