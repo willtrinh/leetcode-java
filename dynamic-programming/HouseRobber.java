@@ -22,26 +22,37 @@ Constraints:
 0 <= nums.length <= 100
 0 <= nums[i] <= 400
 */
+
 public class HouseRobber {
+    // reduce the problem into 1. rob current house or 2. don't rob current house
     public int rob(int[] nums) {
+        // if no house, nothing to rob
         if (nums.length == 0 || nums == null)
             return 0;
+        // if only 1 house, rob that one.
         if (nums.length == 1)
             return nums[0];
+        // if 2 houses, pick the max amount between the 2.
         if (nums.length == 2)
             return Math.max(nums[0], nums[1]);
-
+        // using dp array to store max amount of money at each position abiding by the
+        // contraints
         int[] dp = new int[nums.length];
+        // max amount considering only 1 house is that house
         dp[0] = nums[0];
+        // max amount between 2 houses
         dp[1] = Math.max(nums[0], nums[1]);
-
+        // iterate and add max amount we can rob starting from 3rd house.
         for (int i = 2; i < dp.length; i++) {
+            // num[i] + dp[i -2] = amount of current house + sum of prev prev houses
+            // dp[i-1] = sum of prev houses
             dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
         }
         // the last element in dp array is the max amount of money we can rob
         return dp[nums.length - 1];
     }
 
+    // using 2 variables
     public int rob2(int[] nums) {
         if (nums.length == 0)
             return 0;
