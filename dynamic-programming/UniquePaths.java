@@ -32,16 +32,22 @@ It's guaranteed that the answer will be less than or equal to 2 * 109.
 public class UniquePaths {
     public int uniquePaths(int m, int n) {
         int[][] dp = new int[m][n];
+        // fill all column in first row with 1 (since we only have a single unique path
+        // to reach those)
         for (int i = 0; i < dp.length; i++) {
             dp[i][0] = 1;
         }
+        // fill all rows in first column with 1 (reason same as above)
         for (int i = 0; i < dp[0].length; i++) {
             dp[0][i] = 1;
         }
+        // iterate through matrix, starting with dp[1][1]
         for (int i = 1; i < dp.length; i++) {
             for (int j = 1; j < dp[i].length; j++) {
                 // dp[i-1][j] = cell above
                 // dp[i][j-1] = cell to the left
+                // adding the sum of top cell and left cell give us the unique paths to reach
+                // the current cell
                 dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
             }
         }
