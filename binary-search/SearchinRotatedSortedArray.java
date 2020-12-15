@@ -32,33 +32,40 @@ nums is guranteed to be rotated at some pivot.
 */
 public class SearchinRotatedSortedArray {
     public int search(int[] nums, int target) {
-        int lo = 0, hi = nums.length - 1;
-        // find the index of the smallest value using binary search.
-        // Loop will terminate since mid < hi, and lo or hi will shrink by at least 1.
-        // Proof by contradiction that mid < hi: if mid==hi, then lo==hi and loop would
-        // have been terminated.
+        if (nums.length == 0 || nums == null)
+            return -1;
+        int lo = 0;
+        int hi = nums.length - 1;
+
         while (lo < hi) {
-            int mid = (lo + hi) / 2;
-            if (nums[mid] > nums[hi])
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] > nums[hi]) {
                 lo = mid + 1;
-            else
+            } else {
                 hi = mid;
+            }
         }
-        // lo==hi is the index of the smallest value and also the number of places
-        // rotated.
-        int rot = lo;
+        // lo is now index of the smallest element in the array
+        int start = lo;
+        // reset lo and hi
         lo = 0;
         hi = nums.length - 1;
-        // The usual binary search and accounting for rotation.
+
+        // if target is on the right side
+        if (target >= nums[start] && target <= nums[hi]) {
+            lo = start;
+        } else {
+            hi = start;
+        }
         while (lo <= hi) {
-            int mid = (lo + hi) / 2;
-            int realMid = (mid + rot) % nums.length;
-            if (nums[realMid] == target)
-                return realMid;
-            if (nums[realMid] < target) {
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target) {
                 lo = mid + 1;
-            } else
+            } else {
                 hi = mid - 1;
+            }
         }
         return -1;
     }
