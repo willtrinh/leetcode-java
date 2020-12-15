@@ -33,8 +33,12 @@ Constraints:
 */
 public class HouseRobber2 {
     public int rob(int[] nums) {
+        // if only one house, rob that house
         if (nums.length == 1)
             return nums[0];
+        // max amount from house 1 to house n-1 or house 2 to house n.
+        // house 1 start from index 0, house n-1 = nums.length-2
+        // house 2 start from index 1, house n = nums.length-1
         return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
 
