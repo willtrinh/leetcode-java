@@ -29,6 +29,9 @@ public class Permutations {
     }
 
     private void backtrack(List<List<Integer>> res, List<Integer> tempList, int[] nums) {
+        // when size of tempList == size of nums, meaning we have gone through all nums
+        // in nums array
+        // then create and add the tempList to List of List res.
         if (tempList.size() == nums.length) {
             res.add(new ArrayList<>(tempList));
         } else {
