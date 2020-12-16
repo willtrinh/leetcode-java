@@ -25,19 +25,31 @@ Output: 0
 public class LongestSubstringWithoutRepeatingCharacters {
     // Using Set, Time: O(2n) = O(n), Space: O(min(m,n))
     public int lengthOfLongestSubstring(String s) {
-        int n = s.length();
+        if (s.length() == 0 || s == null)
+            return 0;
+        int len = s.length();
+        // sliding window pointers, to keep track of the longest substring as we expand
+        // the window pointers
+        int i = 0, j = 0;
+        // length of longest substring.
+        int res = 0;
+        // HashSet to keep track of unique characters in the string
         Set<Character> set = new HashSet<>();
-        int ans = 0, i = 0, j = 0;
-        while (i < n && j < n) {
-            // try to extend the range [i, j]
+
+        while (i < len && j < len) {
+            // if set doesn't contain the character, add to the set and increment the
+            // pointer
+            // also compare current res value with the size of the window
             if (!set.contains(s.charAt(j))) {
                 set.add(s.charAt(j++));
-                ans = Math.max(ans, j - i);
-            } else {
+                res = Math.max(res, j - i);
+            }
+            // else if set already contains the character, remove the character from set
+            else {
                 set.remove(s.charAt(i++));
             }
         }
-        return ans;
+        return res;
     }
 
     // Using Map, Time: O(n), Space: O(min(m,n))
