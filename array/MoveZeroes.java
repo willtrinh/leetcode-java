@@ -16,12 +16,12 @@ class MoveZeroes {
             return;
         int index = 0;
         // Shift non-zero values as far forward as possible
-        // Fill remaining space with zeros
         for (int num : nums) {
             if (num != 0)
                 nums[index++] = num;
         }
-
+        // Fill remaining space with zeros, starting from index position (right after
+        // the last non-zero element)
         while (index < nums.length) {
             nums[index++] = 0;
         }
