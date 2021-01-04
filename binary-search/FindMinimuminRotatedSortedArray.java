@@ -54,4 +54,33 @@ public class FindMinimuminRotatedSortedArray {
         // left will be the minimum
         return nums[left];
     }
+
+    public int findMin2(int[] nums) {
+        if (nums.length == 1)
+            return nums[0];
+        int low = 0, high = nums.length - 1;
+        // already sorted array -> min is first elem
+        if (nums[high] > nums[0])
+            return nums[0];
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            // if mid elem > its next elem then min is the next elem
+            if (nums[mid] > nums[mid + 1]) {
+                return nums[mid + 1];
+            }
+            // if mid elem < its prev elem then min is mid elem
+            if (nums[mid] < nums[mid - 1]) {
+                return nums[mid];
+            }
+            // if mid elem > first elem then min is on the right
+            if (nums[mid] > nums[0]) {
+                low = mid + 1;
+            }
+            // if mid elem < first elem, then min is on the left
+            else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
 }
